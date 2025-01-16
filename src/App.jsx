@@ -41,7 +41,7 @@ Additional Details:${AdditionalDetails}`,
           ],
         },
       });
-      setResponse(response.data.candidates[0].content.parts[0].text); // Correct the response structure
+      setResponse(response.data.candidates[0].content.parts[0].text.replace(/```css|```/g, "")); // Correct the response structure
     } catch (error) {
       setResponse("Error generating the answer. Please try again.");
       console.error(error);
@@ -49,10 +49,10 @@ Additional Details:${AdditionalDetails}`,
   }
 
   return (
-    <div>
+    <div className="main-container">
       <div className="header-container">
         <img className="logo" src="./CodeCanvasLogo.jpg" />
-        <h2> Information regarding the site</h2>
+        <h2> Code Canvas</h2>
       </div>
       <div className="input-container">
         <h4>React component to be styled</h4>

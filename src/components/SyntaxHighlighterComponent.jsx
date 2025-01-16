@@ -1,6 +1,7 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import './SyntaxHighlighterComponent.css'
 
 const SyntaxHighlighterComponent = ({ Response }) => {
   const handleCopy = () => {
@@ -19,23 +20,11 @@ const SyntaxHighlighterComponent = ({ Response }) => {
   };
     return (
         <div style={{ position: "relative" }}>
-        <button
+        <button className="copy-button"
         onClick={handleCopy}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          padding: "5px 10px",
-          background: "#007BFF",
-          color: "#fff",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
       >
         Copy Code
       </button>
-
           <SyntaxHighlighter language="css" style={vscDarkPlus}>
             {Response || "// No code to display."}
           </SyntaxHighlighter>
