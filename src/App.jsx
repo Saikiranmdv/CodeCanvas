@@ -1,6 +1,9 @@
 import { React, useState } from "react";
 import CodeEditorBox from "./components/Codeeditorbox";
 import axios from "axios";
+import "./App.css"
+import SyntaxHighlighterComponent from "./components/SyntaxHighlighterComponent";
+
 
 const App = () => {
 
@@ -48,7 +51,7 @@ Additional Details:${AdditionalDetails}`,
   return (
     <div>
       <div className="header-container">
-        <div>Logo</div>
+        <img className="logo" src="./CodeCanvasLogo.jpg" />
         <h2> Information regarding the site</h2>
       </div>
       <div className="input-container">
@@ -62,7 +65,7 @@ Additional Details:${AdditionalDetails}`,
         onChange={(e) => setAdditionalDetails(e.target.value)}/>
         <button className="generate-button" onClick={generateAnswer}>Generate CSS</button>
       </div>
-      {Response}
+      <SyntaxHighlighterComponent Response = {Response} />
     </div>
   );
 };
