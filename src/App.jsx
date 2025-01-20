@@ -10,7 +10,8 @@ const App = () => {
   const [Theme, setTheme] = useState("")
   const [AdditionalDetails, setAdditionalDetails] = useState("")
   const [Response, setResponse] = useState("")
-  const [code, setCode] = useState(`//enter the react code`);
+  const [code, setCode] = useState(`//enter the react code`)
+  const [Loading, setLoading] = useState(false)
 
   async function generateAnswer() {
     if (!code.trim()) {
@@ -20,7 +21,8 @@ const App = () => {
     }
     try {
       const apiKey = import.meta.env.VITE_API_KEY; // Use process.env for CRA
-      setResponse("loading....");
+      setLoading(true)
+
       const response = await axios({
         url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`,
         method: "post",
@@ -45,6 +47,8 @@ Additional Details:${AdditionalDetails}`,
     } catch (error) {
       setResponse("Error generating the answer. Please try again.");
       console.error(error);
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -52,7 +56,10 @@ Additional Details:${AdditionalDetails}`,
     <div className="main-container">
       <div className="header-container">
         <img className="logo" src="./CodeCanvasLogo.jpg" />
+        <div>
         <h2> Code Canvas</h2>
+        <h3> genearate css based on the component </h3>
+        </div>        
       </div>
       <div className="input-container">
         <h4>React component to be styled</h4>
@@ -63,7 +70,7 @@ Additional Details:${AdditionalDetails}`,
         <h4>Additional Details(e.g., Include hover effects, make it mobile-friendly, add animations, use a specific color palette, etc.)</h4>
         <textarea value={AdditionalDetails} 
         onChange={(e) => setAdditionalDetails(e.target.value)}/>
-        <button className="generate-button" onClick={generateAnswer}>Generate CSS</button>
+        <button className="generate-button" onClick={generateAnswer} disabled = {Loading}>{Loading ? "Loading..." : "Generate CSS" }</button>
       </div>
       <SyntaxHighlighterComponent Response = {Response} />
     </div>
