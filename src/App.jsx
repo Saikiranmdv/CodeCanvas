@@ -10,13 +10,13 @@ const App = () => {
   const [Theme, setTheme] = useState("")
   const [AdditionalDetails, setAdditionalDetails] = useState("")
   const [Response, setResponse] = useState("")
-  const [code, setCode] = useState(`//enter the react code`)
+  const [code, setCode] = useState()
   const [Loading, setLoading] = useState(false)
 
   async function generateAnswer() {
-    if (!code.trim()) {
+    if (!code.trim() || !Theme || !AdditionalDetails) {
       // Check if the question is empty or only contains whitespace
-      setResponse("Please enter a question before generating an answer.");
+      setResponse("Please dont kepp any column empty before generating an answer.");
       return;
     }
     try {

@@ -11,6 +11,7 @@ const CodeEditorBox = ({ code, setCode }) => {
         height="300px"
         extensions={[javascript()]}
         onChange={(value) => setCode(value)}
+        placeholder={'// enter component code'}
       />
     </div>
   );
